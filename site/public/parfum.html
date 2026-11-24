@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noir&Blanc</title>
+                <link rel="stylesheet" type="text/css" href="style.css">
+<style>
+#back-to-top-noir{position:fixed;right:26px;bottom:26px;z-index:9999;width:48px;height:48px;border:1px solid rgba(255,255,255,.75);border-radius:50%;background:linear-gradient(145deg,#292929,#050505);color:#fff;font-size:24px;line-height:1;box-shadow:0 8px 24px rgba(0,0,0,.22);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .2s ease}
+#back-to-top-noir.visible{opacity:1;visibility:visible;transform:translateY(0)}
+#back-to-top-noir:hover{background:linear-gradient(145deg,#555,#171717);transform:translateY(-3px)}
+#back-to-top-noir:focus-visible{outline:3px solid #c8a878;outline-offset:4px}
+@media(max-width:600px){#back-to-top-noir{right:16px;bottom:16px;width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#back-to-top-noir{transition:none}}
+</style>
+    </head>
+    <body>
+       <header class="header">
+        <h1 div class="logo">Noir&Blanc</h1>
+<a href="media/panda.jpg" alt="лого"> </a>
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+        <nav class="nav">
+                <a href="index.html">Главная</a>
+                <a href="price.html">Услуги и цены</a>
+                <a href="parfum.html">Парфюм</a>
+                <a href="contact.html">Контакты</a>
+                
+                <a href="question.html">Вопросы - ответы</a>
+                <a href="order-history.html">История заказов</a>
+                <a href="cart.html" class="cart-link">Корзина <span id="cart-count">0</span></a>
+                <a href="login.html" class="profile-link is-guest" data-auth-link aria-label="Авторизация" title="Авторизация"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/></svg><span class="profile-text">Авторизация</span></a>
+
+        </nav>
+       </header>
+            <div class="container">
+        <div class="catalog-filter-toggle-row">
+          <button type="button" id="toggle-catalog-filters" class="catalog-filter-toggle" aria-expanded="false" aria-controls="catalog-filters">
+            <span class="catalog-filter-label">Фильтры</span>
+            <span id="catalog-active-filters" class="catalog-active-filters" hidden>0</span>
+            <span class="catalog-filter-chevron" aria-hidden="true">▾</span>
+          </button>
+          <p id="catalog-result-count" aria-live="polite"></p>
+        </div>
+        <section id="catalog-filters" class="catalog-tools" aria-label="Поиск и фильтр товаров" hidden>
+          <div class="catalog-field">
+            <label class="catalog-search-label" for="product-search">Поиск по названию</label>
+            <input id="product-search" type="search" placeholder="Например, HFC PROPOSAL…" autocomplete="off">
+          </div>
+          <div class="catalog-field">
+            <label for="brand-filter">Бренд</label>
+            <select id="brand-filter"><option value="">Все бренды</option>
+              <option value="MAISON DE L ASIE">MAISON DE L ASIE</option><option value="RHIZOME">RHIZOME</option><option value="HFC">HFC</option><option value="AJMAL">AJMAL</option><option value="FRANCK BOCLET">FRANCK BOCLET</option><option value="MARK BUXTON">MARK BUXTON</option><option value="CITY">CITY</option><option value="KOKESHI">KOKESHI</option>
+            </select>
+          </div>
+          <div class="catalog-field">
+            <label for="gender-filter">Категория</label>
+            <select id="gender-filter">
+              <option value="">Все категории</option>
+              <option value="Унисекс">Унисекс</option>
+              <option value="Женский">Женские</option>
+              <option value="Мужской">Мужские</option>
+              <option value="Детский">Детские</option>
+            </select>
+          </div>
+          <div class="catalog-field">
+            <label for="type-filter">Тип продукта</label>
+            <select id="type-filter">
+              <option value="">Все типы</option>
+              <option value="Парфюмерная вода">Парфюмерная вода</option>
+              <option value="Туалетная вода">Туалетная вода</option>
+              <option value="Духи">Духи</option>
+              <option value="Парфюмерия">Парфюмерия</option>
+            </select>
+          </div>
+          <div class="catalog-field">
+            <label for="price-min">Цена от, ₽</label>
+            <input id="price-min" type="number" min="0" step="100" inputmode="numeric" placeholder="0">
+          </div>
+          <div class="catalog-field">
+            <label for="price-max">Цена до, ₽</label>
+            <input id="price-max" type="number" min="0" step="100" inputmode="numeric" placeholder="50000">
+          </div>
+          <div class="catalog-field">
+            <label for="sort-filter">Сортировка</label>
+            <select id="sort-filter">
+              <option value="default">По категориям</option>
+              <option value="price-asc">Сначала дешёвые</option>
+              <option value="price-desc">Сначала дорогие</option>
+              <option value="name">По названию</option>
+            </select>
+          </div>
+          <div class="catalog-filter-actions">
+            <button type="button" id="reset-catalog-filters" class="catalog-reset">Сбросить</button>
+            <button type="button" class="catalog-filter-collapse" data-collapse-catalog-filters>Свернуть фильтры</button>
+          </div>
+        </section>
+        <p id="catalog-no-results" class="catalog-no-results" hidden>Ничего не найдено. Попробуйте изменить запрос или фильтры.</p>
+        <h2>Унисекс</h2>
+        <div class="parfums">
+                <div class="parfum" data-product-name="MAISON DE L ASIE Les Nuits De Bal" data-brand="MAISON DE L ASIE" data-perfume-id="3" data-gender="Унисекс" data-type="Парфюмерия" data-price="21725">
+                    <a href="MAISONDELASIELesNuitsDeBal.html">
+            <img src="media/MAISON DE L ASIE Les Nuits De Bal.jpg" alt="парфюм" width="35%" height="50%">
+            <p>Экстракт духов</p>
+            <h3>MAISON DE L ASIE Les Nuits De Bal</h3>
+            <span class="price">
+                от 21 725₽
+            </span>
+
+                    </a>    
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                </div>
+                <div class="parfum" data-product-name="RHIZOME 04" data-brand="RHIZOME" data-perfume-id="1" data-gender="Унисекс" data-type="Парфюмерная вода" data-price="6380">
+                    <a href="RHIZOME04.html">
+                    <img src="media/RHIZOME 04.jpg" alt="парфюм" width="35%" height="50%">
+                    <p>Парфюмерная вода</p>
+                    <h3>RHIZOME 04</h3>
+                    <span class="price">
+                        от 6 380₽
+                    </span>
+                    </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                </div>
+        </div>
+            
+                    <h2>Женские</h2>
+                    <div class="parfums">
+                        <div class="parfum" data-product-name="HFC PROPOSAL" data-brand="HFC" data-perfume-id="6" data-gender="Женский" data-type="Парфюмерная вода" data-price="33600">
+                                    <a href="HFCPROPOSAL.html">
+                                        <img src="media/HFC PROPOSAL.jpg" alt="парфюм" width="35%" height="50%">
+                                        <p>Парфюмерная вода</p>
+                                        <h3>HFC PROPOSAL</h3>
+                                        <span class="price">
+                                            oт 33 600₽
+                                        </span>
+                                    </a>    
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                                </div>
+                        <div class="parfum" data-product-name="AJMAL ARISTOCRAT HER" data-brand="AJMAL" data-perfume-id="8" data-gender="Женский" data-type="Парфюмерная вода" data-price="10625">
+                            <a href="AJMALARISTOCRATHER.html">
+                                <img src="media/AJMAL ARISTOCRAT HER.jpg" alt="парфюм" width="35%" height="50%">
+                                <p>Парфюмерная вода</p>
+                                <h3>AJMAL ARISTOCRAT HER</h3>
+                                <span class="price">
+                                    от 10 625₽
+                                    
+                                </span>
+                            </a>
+                                
+                            </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                        </div>
+                    </div>
+                    <h2>Мужские</h2>
+                    <div class="parfums">
+                        <div class="parfum" data-product-name="FRANCK BOCLET Eccentric" data-brand="FRANCK BOCLET" data-perfume-id="5" data-gender="Мужской" data-type="Духи" data-price="17850">
+                            <a href="FRANCKBOCLETEccentric.html">
+                                <img src="media/FRANCK BOCLET Eccentric.webp" alt="парфюм" width="35%" height="50%">
+                                <p>Духи</p>
+                                <h3>FRANCK BOCLET Eccentric</h3>
+                                <span class="price">
+                                    от 17 850₽
+                                </span>
+                            </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                        </div>
+                        <div class="parfum" data-product-name="MARK BUXTON Dreaming with Ghosts" data-brand="MARK BUXTON" data-perfume-id="4" data-gender="Мужской" data-type="Парфюмерная вода" data-price="13173">
+                            <a href="MARKBUXTONDreamingwithGhosts.html">
+                                <img src="media/MARK BUXTON Dreaming with Ghosts.webp" alt="парфюм" width="35%" height="50%">
+                                <p>Духи</p>
+                                <h3>MARK BUXTON Dreaming with Ghosts</h3>
+                                <span class="price">
+                                    от 13 173₽
+                                </span>
+                            </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                        </div>
+                    </div>
+                    <h2>Детские</h2>
+                    <div class="parfums">
+                        <div class="parfum" data-product-name="CITY FUNNY PRINCESS" data-brand="CITY" data-perfume-id="2" data-gender="Детский" data-type="Туалетная вода" data-price="424">
+                            <a href="CITYFUNNYPRINCESS.html">
+                                <img src="media/CITY FUNNY PRINCESS.webp" alt="парфюм" width="35%" height="50%">
+                                <p>Душистая вода</p>
+                                <h3>CITY FUNNY PRINCESS</h3>
+                                <span class="price">
+                                    от 424₽
+                                </span>
+                            </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                        </div>
+                        <div class="parfum" data-product-name="KOKESHI LOTUS" data-brand="KOKESHI" data-perfume-id="7" data-gender="Детский" data-type="Туалетная вода" data-price="2925">
+                            <a href="KOKESHILOTUS.html">
+                                <img src="media/KOKESHI LOTUS.jpg" alt = "парфюм" width="35%" height="50%">
+                                <p>Туалетная вода</p>
+                                <h3>KOKESHI LOTUS</h3>
+                                <span class="price">
+                                    от 2 925₽
+                                </span>
+                            </a>
+                        <button type="button" class="btn btn-add-to-cart">В корзину</button>
+                        </div>
+                    </div>
+            </div>
+            
+                
+        <footer>
+            <p>&copy; 2025 - Noir&Blanc</p>
+        </footer>
+            </div>
+    <script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="auth.js"></script>
+<script src="cart.js"></script>
+<script src="product-search.js"></script>
+</body>
+</html>

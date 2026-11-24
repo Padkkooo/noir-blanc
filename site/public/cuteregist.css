@@ -1,0 +1,219 @@
+:root {
+  --bg: #fdf8ff;
+  --accent: #f7d9e6;
+  --accent-light: #fbebf7;
+  --text: #4a4a4a;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: url('media/phon.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  background: var(--white);
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+}
+
+h2 {
+  color: var(--text);
+  margin-bottom: 25px;
+  font-weight: 600;
+    color: #000000;
+    margin-bottom: 15px;
+    border-left: 6px solid #ffe0e7;
+    padding-left: 10px;
+
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--accent-light);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+  background-color: #fff;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-light);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #636363;
+  font-weight: 500px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #fdcad9;
+  box-shadow: 0 0 10px var(--accent-light);
+}
+
+a {
+  display: block;
+  margin-top: 15px;
+  color: var(--accent);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+header {
+    background: #000000;
+    color: #ffffff;
+      padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+  transition: 0.3s;
+    border-bottom: 6px solid #f7cce3; 
+}
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    padding: 25px;
+      border-radius: 10px;
+  margin-bottom: 15px;
+    color: #f7cce3;
+}
+header:hover {
+  transform: translateY(-3px);
+}
+nav {
+    margin-top: 12px;
+}
+.layout {
+  display: flex;  
+  align-items: flex-start;
+}
+
+@media (min-width: 769px) {
+  .layout {
+    flex-direction: row; 
+  }
+
+  .container {
+    width: 350px;
+  }
+    #menu-toggle:checked + .burger + .nav {
+    display: flex;
+  }
+}
+#menu-toggle {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;  
+    align-items: center;
+  }
+
+  header {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .container {
+    width: 90%;
+    margin-top: 10px;
+  }
+    #menu-toggle:checked + .burger + .nav {
+    display: flex;
+  }
+}
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.burger span {
+  width: 28px;
+  height: 3px;
+  background: white;  
+  border-radius: 3px;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    background: black;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+
+  .nav a {
+    color: white;
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  #menu-toggle:checked + .burger + .nav {
+    display: flex;
+  }
+}
+/* ===== Иконка профиля (страницы входа/регистрации) ===== */
+.nav .profile-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;min-width:40px;margin:0 6px;padding:0;border-radius:50%;background:#1b1b1b;border:1px solid #f7cce3;color:#f7cce3;text-decoration:none;position:relative;transition:background .25s,color .25s,transform .25s}
+.nav .profile-link svg{width:21px;height:21px;fill:currentColor;display:block}
+.nav .profile-link:hover{background:#f7cce3;color:#111;transform:translateY(-2px)}
+.nav .profile-link.is-logged-in::after{content:"";position:absolute;right:1px;bottom:1px;width:9px;height:9px;border-radius:50%;background:#6fcf97;border:2px solid #000}
+.nav .profile-link .profile-text{display:none}
+.nav .profile-link.is-guest{width:auto;height:40px;min-width:0;padding:0;border:0;border-radius:0;background:transparent;color:#fff}
+.nav .profile-link.is-guest svg{display:none}
+.nav .profile-link.is-guest .profile-text{display:inline}
+.nav .profile-link.is-guest:hover{background:transparent;color:#f7cce3;transform:none}
+.nav .profile-link.is-guest::after{content:none}
+#auth-message{padding:8px 10px;border-radius:8px;background:#fff6fa}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Noir&Blanc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <h1 class="logo">Noir&Blanc</h1>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="price.html">Услуги и цены</a>
+        <a href="parfum.html">Парфюм</a>
+        <a href="contact.html">Контакты</a>
+        
+        <a href="question.html">Вопросы - ответы</a>
+        <a href="order-history.html">История заказов</a>
+        <a href="cart.html" class="cart-link">Корзина <span id="cart-count">0</span></a>
+        <a href="login.html" class="profile-link is-guest" data-auth-link aria-label="Авторизация" title="Авторизация"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/></svg><span class="profile-text">Авторизация</span></a>
+    </nav>
+</header>
+
+<main class="account-container">
+    <div id="account-message" class="form-message" hidden></div>
+
+    <section class="account-hero">
+        <div class="account-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/></svg>
+        </div>
+        <div>
+            <h2 id="account-name">Личный кабинет</h2>
+            <p id="account-email">Загрузка…</p>
+            <p class="account-since" id="account-since"></p>
+        </div>
+    </section>
+
+    <section class="account-stats" aria-label="Статистика аккаунта">
+        <div class="account-stat"><b id="account-orders-count">0</b><span>Заказов</span></div>
+        <div class="account-stat"><b id="account-total-spent">0 ₽</b><span>Сумма покупок</span></div>
+        <div class="account-stat"><b id="account-cart-count">0</b><span>Товаров в корзине</span></div>
+    </section>
+
+    <div class="account-grid">
+        <section class="account-card">
+            <h3>Данные профиля</h3>
+            <form id="profile-form">
+                <label>Имя и фамилия
+                    <input name="fullname" type="text" required minlength="2" maxlength="120" autocomplete="name">
+                </label>
+                <label>Email
+                    <input id="profile-email" type="email" disabled>
+                </label>
+                <p class="form-message" id="profile-message" hidden></p>
+                <button type="submit">Сохранить имя</button>
+            </form>
+        </section>
+
+        <section class="account-card">
+            <h3>Смена пароля</h3>
+            <form id="password-form">
+                <label>Текущий пароль
+                    <input name="currentPassword" type="password" required autocomplete="current-password">
+                </label>
+                <label>Новый пароль
+                    <input name="newPassword" type="password" required minlength="6" autocomplete="new-password">
+                </label>
+                <label>Повторите новый пароль
+                    <input name="repeatPassword" type="password" required minlength="6" autocomplete="new-password">
+                </label>
+                <p class="form-message" id="password-message" hidden></p>
+                <button type="submit">Изменить пароль</button>
+            </form>
+        </section>
+    </div>
+
+    <section class="account-card account-orders">
+        <h3>Последние заказы</h3>
+        <div id="account-orders"><p class="account-empty">Загружаем заказы…</p></div>
+        <p><a href="order-history.html">Вся история заказов</a></p>
+    </section>
+
+    <section class="account-card" style="margin-top:20px">
+        <h3>Выход</h3>
+        <p class="account-empty">Завершить сеанс на этом устройстве.</p>
+        <button type="button" id="account-logout" class="danger-button">Выйти из аккаунта</button>
+    </section>
+</main>
+
+<script src="ui.js"></script>
+<script src="api.js"></script>
+<script src="auth.js"></script>
+<script src="cart.js"></script>
+<script src="account.js"></script>
+</body>
+</html>
